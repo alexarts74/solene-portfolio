@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# portfolio source files (large images + docx)
+/app/portfolio/
+
+# processed photos (regenerated from source)
+/public/photos/
