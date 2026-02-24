@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prints, getPrint } from "@/lib/data/prints";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -42,18 +43,20 @@ export default async function PrintDetailPage({ params }: Props) {
         </Link>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
-            <Image
-              src={print.photo}
-              alt={print.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          </div>
+          <AnimateOnScroll animation="animate-scale-in">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+              <Image
+                src={print.photo}
+                alt={print.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
+            </div>
+          </AnimateOnScroll>
 
-          <div className="flex flex-col justify-center">
+          <AnimateOnScroll animation="animate-fade-up" delay={200} className="flex flex-col justify-center">
             <h1 className="text-2xl font-light tracking-wide">
               {print.title}
             </h1>
@@ -92,7 +95,7 @@ export default async function PrintDetailPage({ params }: Props) {
             <p className="text-xs text-muted/60 mt-4 text-center">
               Payment by bank transfer or PayPal
             </p>
-          </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </div>

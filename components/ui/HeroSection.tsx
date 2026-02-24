@@ -4,13 +4,13 @@ export default function HeroSection() {
   return (
     <section className="relative flex h-screen items-center justify-center px-6 overflow-hidden">
       <div className="text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.2em] uppercase text-foreground">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.2em] uppercase text-foreground animate-reveal-up">
           {siteContent.name}
         </h1>
-        <p className="mt-4 text-sm sm:text-base tracking-[0.15em] text-muted uppercase">
+        <p className="mt-4 text-sm sm:text-base tracking-[0.15em] text-muted uppercase animate-reveal-up" style={{ animationDelay: "150ms" }}>
           {siteContent.subtitle}
         </p>
-        <p className="mt-2 text-sm tracking-wide text-muted/70">
+        <p className="mt-2 text-sm tracking-wide text-muted/70 animate-reveal-up" style={{ animationDelay: "300ms" }}>
           {siteContent.tagline}
         </p>
       </div>

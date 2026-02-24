@@ -42,17 +42,141 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Lightbox animations */
-.lightbox-enter {
-  animation: fadeIn 0.2s ease-out;
+/* ── Animation keyframes ── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes fadeIn {
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slow-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fade-in {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes lightbox-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Animation utility classes ── */
+.animate-fade-up {
+  animation: fade-up 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-down {
+  animation: fade-down 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-scale-in {
+  animation: scale-in 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-reveal-up {
+  animation: reveal-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger children */
+.stagger-item {
+  animation-delay: calc(var(--stagger-index, 0) * 80ms);
+}
+
+/* Pre-animation state */
+.animate-on-scroll {
+  opacity: 0;
+}
+
+/* Lightbox animations */
+.lightbox-enter {
+  animation: lightbox-enter 250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lightbox-image-enter {
+  animation: fade-in 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Slow zoom (Ken Burns) */
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-out both;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-down,
+  .animate-scale-in,
+  .animate-reveal-up,
+  .animate-fade-in,
+  .lightbox-enter,
+  .lightbox-image-enter,
+  .animate-slow-zoom,
+  .stagger-item {
+    animation: none !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1 !important;
   }
 }
 

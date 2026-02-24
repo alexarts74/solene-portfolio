@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { collections, getCollection } from "@/lib/data/collections";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 interface Props {
   params: Promise<{ collection: string }>;
@@ -30,12 +31,15 @@ export default async function CollectionPage({ params }: Props) {
   return (
     <div className="pt-24 pb-16 px-6">
       <div className="mx-auto max-w-7xl">
-        <h1 className="text-2xl font-light tracking-wide text-center mb-12">
-          {collection.title}
-        </h1>
+        <AnimateOnScroll animation="animate-fade-up">
+          <h1 className="text-2xl font-light tracking-wide text-center mb-12">
+            {collection.title}
+          </h1>
+        </AnimateOnScroll>
 
         <div className="space-y-16">
-          {collection.galleries.map((gallery) => (
+          {collection.galleries.map((gallery, i) => (
+            <AnimateOnScroll key={gallery.slug} animation="animate-fade-up" delay={i * 100}>
             <Link
               key={gallery.slug}
               href={`/collections/${collection.slug}/${gallery.slug}`}
@@ -66,6 +70,7 @@ export default async function CollectionPage({ params }: Props) {
                 ))}
               </div>
             </Link>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

@@ -76,7 +76,8 @@ export default function Lightbox({
 
       {/* Image */}
       <div
-        className="relative w-full h-full max-w-[90vw] max-h-[90vh] flex items-center justify-center"
+        key={currentIndex}
+        className="relative w-full h-full max-w-[90vw] max-h-[90vh] flex items-center justify-center lightbox-image-enter"
         onClick={(e) => e.stopPropagation()}
       >
         <Image

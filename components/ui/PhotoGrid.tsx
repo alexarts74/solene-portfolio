@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import type { Photo } from "@/lib/types";
+import { useInView } from "@/hooks/useInView";
 import Lightbox from "./Lightbox";
 
 interface PhotoGridProps {
@@ -11,14 +12,16 @@ interface PhotoGridProps {
 
 export default function PhotoGrid({ photos }: PhotoGridProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const { ref, isInView } = useInView();
 
   return (
     <>
-      <div className="masonry">
+      <div className="masonry" ref={ref}>
         {photos.map((photo, i) => (
           <button
             key={photo.src}
-            className="w-full cursor-zoom-in group"
+            className={`w-full cursor-zoom-in group ${isInView ? "animate-scale-in stagger-item" : "animate-on-scroll"}`}
+            style={{ "--stagger-index": Math.min(i, 12) } as React.CSSProperties}
             onClick={() => setLightboxIndex(i)}
           >
             <Image

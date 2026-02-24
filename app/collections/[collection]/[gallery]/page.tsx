@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { collections, getGallery } from "@/lib/data/collections";
 import PhotoGrid from "@/components/ui/PhotoGrid";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 interface Props {
   params: Promise<{ collection: string; gallery: string }>;
@@ -38,21 +39,23 @@ export default async function GalleryPage({ params }: Props) {
   return (
     <div className="pt-24 pb-16 px-6">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8">
+        <AnimateOnScroll animation="animate-fade-in" className="mb-8">
           <Link
             href={`/collections/${collection.slug}`}
             className="text-sm text-muted hover:text-foreground transition-colors"
           >
             &larr; {collection.title}
           </Link>
-        </div>
+        </AnimateOnScroll>
 
-        <h1 className="text-2xl font-light tracking-wide mb-2">
-          {gallery.title}
-        </h1>
-        <p className="text-sm text-muted mb-8">
-          {gallery.photos.length} photos
-        </p>
+        <AnimateOnScroll animation="animate-fade-up" delay={100}>
+          <h1 className="text-2xl font-light tracking-wide mb-2">
+            {gallery.title}
+          </h1>
+          <p className="text-sm text-muted mb-8">
+            {gallery.photos.length} photos
+          </p>
+        </AnimateOnScroll>
 
         <PhotoGrid photos={gallery.photos} />
       </div>
