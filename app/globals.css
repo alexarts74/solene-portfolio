@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --muted: #888888;
-  --border: #222222;
-  --accent: #d4d4d4;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --muted: #666666;
+  --border: #e0e0e0;
+  --accent: #333333;
 }
 
 @theme inline {
@@ -190,6 +190,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: #c0c0c0;
   border-radius: 3px;
 }
